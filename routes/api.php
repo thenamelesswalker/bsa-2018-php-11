@@ -16,3 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/v1/lots', 'Api\LotController@index');
+Route::get('/v1/lots/{id}', 'Api\LotController@show');
+Route::post('/v1/lots', 'Api\LotController@add');
+Route::post('/v1/trades', 'Api\LotController@buy');
