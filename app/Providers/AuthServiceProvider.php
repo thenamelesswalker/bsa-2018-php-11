@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Policies\LotPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -14,6 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
+        'App\Entity\Lot' => 'App\Policies\LotPolicy',
     ];
 
     /**
@@ -25,6 +27,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('createLot', 'App\Policies\LotPolicy@createLot');
+        Gate::define('buyLot', 'App\Policies\LotPolicy@buyLot');
     }
 }
